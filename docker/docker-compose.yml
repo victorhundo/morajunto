@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  spring:
+    build: .
+    container_name: spring
+    image: spring
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../:/opt/spring/
+      - ./config:/config
+      - maven:/root/.m2/
+    environment:
+      - BANNER_LOCATION=file:/config/banner.txt
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    volumes:
+      - mongo:/data/db
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+
+volumes:
+  maven:
+  mongo:
