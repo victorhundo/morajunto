@@ -6,10 +6,9 @@ services:
     container_name: spring
     image: spring
     ports:
-      - "8080:8080"
+      - "8099:8080"
     volumes:
       - ../:/opt/spring/
-      - ./config:/config
       - maven:/root/.m2/
     environment:
       - BANNER_LOCATION=file:/config/banner.txt
@@ -22,6 +21,9 @@ services:
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
+    command: --bind_ip 0.0.0.0
+    expose:
+      - "27017"
 
 volumes:
   maven:
