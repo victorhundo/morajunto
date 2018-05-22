@@ -15,12 +15,12 @@ public interface UserService {
 
 	User getById(String id);
 	
-	User login(User user);
+	User login(String email);
 
 	boolean update(User newUser);
 
 	void delete(User user);
 
-	
+	User getByEmail(String email);
 
 }

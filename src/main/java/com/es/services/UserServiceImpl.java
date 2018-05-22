@@ -51,9 +51,19 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	
+
 	@Override
-	public User login(User user) {
-		
+	public User login(String email) {
+		userRepository.findById(email);
+		return null;
+	}
+
+
+
+	@Override
+	public User getByEmail(String email) {
+		userRepository.findByEmail(email);
 		return null;
 	}
 
