@@ -51,22 +51,13 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
-	
-
 	@Override
-	public User login(String email) {
-		userRepository.findById(email);
-		return null;
+	public User login(String email, String password) {
+		User user = userRepository.findByEmail(email);
+		if(user.getPassword().equals(password)){
+			return user;
+		}else{
+			return null;
+		}
 	}
-
-
-
-	@Override
-	public User getByEmail(String email) {
-		userRepository.findByEmail(email);
-		return null;
-	}
-
-	
-
 }

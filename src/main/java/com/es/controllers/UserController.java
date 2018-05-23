@@ -77,4 +77,16 @@ public class UserController {
 		return ResponseEntity.ok(new Response<Integer>(1));
 	}
 
+	@ApiOperation(value = "Verifica dados para fazer login do usuário")
+	@PostMapping(path = "{email}/{password}")
+	public ResponseEntity<Response<Integer>> login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) {
+		User user = this.userService.login(email, password);
+		if(user == null){
+			return ResponseEntity.ok(new Response<Integer>(404));
+		}else{
+			return ResponseEntity.ok(new Response<Integer>(200));
+		}
+		
+	}
+
 }
