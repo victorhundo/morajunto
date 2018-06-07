@@ -14,18 +14,19 @@ jobs:
             VER="17.03.0-ce"
             curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
 
       - run:
           name: Install Docker Compose
-          mv /tmp/docker/* /usr/bin
           command: |
             set -x
             curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
             chmod +x /usr/local/bin/docker-compose
+
       - setup_remote_docker
 
       - run:
-          name: Change and update branch
+          name: Start container and verify it's working
           command: |
             set -x
             docker-compose -f docker/compose/circle.yaml up -d --build
@@ -35,6 +36,7 @@ jobs:
           command: |
             set -x
             sleep 20
+
 
       - add_ssh_keys:
           fingerprints:
@@ -46,6 +48,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               ./.circleci/deploy.sh
             fi
+
       - store_artifacts:
           path: /tmp/test-results
           destination: raw-test-output
