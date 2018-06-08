@@ -40,10 +40,15 @@ jobs:
 
       - deploy:
           name: Deployment
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
-            fi
+          machine:
+            enabled: true
+          steps:
+            - run:
+              name: Deploy Over SSH
+              command: |
+              if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
+              fi
 
       - store_artifacts:
           path: /tmp/test-results
