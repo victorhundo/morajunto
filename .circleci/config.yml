@@ -38,15 +38,11 @@ jobs:
             sleep 20
 
 
-      - add_ssh_keys:
-          fingerprints:
-            - "c5:0d:a4:e3:b8:96:4a:42:68:ed:72:60:33:b5:84:2d"
-
       - deploy:
           name: Deployment
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              ./.circleci/deploy.sh
+              ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
             fi
 
       - store_artifacts:
