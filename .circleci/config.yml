@@ -35,14 +35,15 @@ jobs:
           destination: raw-test-output
       - store_test_results:
           path: /tmp/test-results
+
   deploy:
     machine:
       enabled: true
     steps:
       - run:
-        name: Deploy Over SSH
-        command: |
-          ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
+          name: Deploy Over SSH
+          command: |
+            ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
 
 workflows:
   version: 2
