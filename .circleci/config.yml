@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
+            ssh vhugo@csi.splab.ufcg.edu.br "/opt/deploy/morajunto.sh"
 
 workflows:
   version: 2
