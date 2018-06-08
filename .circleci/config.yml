@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/cci-demo-docker-primary:0.0.2
-
     steps:
       - checkout
       - run:
@@ -31,22 +30,19 @@ jobs:
           command: |
             set -x
             sleep 20
-
       - store_artifacts:
           path: /tmp/test-results
           destination: raw-test-output
-
       - store_test_results:
           path: /tmp/test-results
-
   deploy:
-      machine:
-        enabled: true
-      steps:
-        - run:
-            name: Deploy Over SSH
-            command: |
-                ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
+    machine:
+      enabled: true
+    steps:
+      - run:
+        name: Deploy Over SSH
+        command: |
+          ssh -oStrictHostKeyChecking=no vhugo@csi.splab.ufcg.edu.br /opt/deploy/morajunto.sh
 
 workflows:
   version: 2
@@ -54,8 +50,8 @@ workflows:
     jobs:
       - build
       - deploy:
-        requeries:
-          - build
-        filters:
-          branches:
-            only: master
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
