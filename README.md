@@ -3,4 +3,4 @@
 3. Instale Docker compose -> `sudo pip install docker-compose`
 4. git clone
 5. Entre na pasta docker e faça `sudo docker-compose up --build`
-6. Acesse http://localhost:8099/
+6. Acesse http://localhost:8099/ 
