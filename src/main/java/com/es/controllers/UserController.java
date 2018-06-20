@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.es.controllers.UserController.LoginResponse;
 import com.es.models.User;
 import com.es.responses.Response;
 import com.es.services.UserService;
@@ -82,7 +83,7 @@ public class UserController {
 
 	@ApiOperation(value = "Verifica dados para fazer login do usuário")
 	@PostMapping(path = "{email}/{password}")
-	public LoginResponse login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) throws Exception {
+	public ResponseEntity<LoginResponse> login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) throws Exception {
 		User user = this.userService.login(email, password);
 		if(user == null){
 			throw new Exception();
@@ -91,7 +92,7 @@ public class UserController {
 					.signWith(SignatureAlgorithm.HS512, "secretkey")
 					.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 1000)).compact();
 
-			return new LoginResponse(token,user);
+			return ResponseEntity.ok(new LoginResponse(token, user));
 		}
 		
 	}
