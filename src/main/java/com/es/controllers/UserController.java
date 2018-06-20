@@ -1,5 +1,6 @@
 package com.es.controllers;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,8 @@ import com.es.models.User;
 import com.es.responses.Response;
 import com.es.services.UserService;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -79,14 +82,29 @@ public class UserController {
 
 	@ApiOperation(value = "Verifica dados para fazer login do usuário")
 	@PostMapping(path = "{email}/{password}")
-	public ResponseEntity<Response<Integer>> login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) {
+	public LoginResponse login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) throws Exception {
 		User user = this.userService.login(email, password);
 		if(user == null){
-			return ResponseEntity.ok(new Response<Integer>(404));
+			throw new Exception();
 		}else{
-			return ResponseEntity.ok(new Response<Integer>(200));
+			String token = Jwts.builder().setSubject(user.getUsername())
+					.signWith(SignatureAlgorithm.HS512, "secretkey")
+					.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 1000)).compact();
+
+			return new LoginResponse(token,user);
 		}
 		
+	}
+	
+	public class LoginResponse {
+		public String token;
+		public User user;
+
+		public LoginResponse(String token,User user) {
+			this.token = token;
+			this.user = user;
+		}
+
 	}
 
 }
