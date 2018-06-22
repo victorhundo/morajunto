@@ -86,8 +86,10 @@ public class UserController {
 	public ResponseEntity<LoginResponse> login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) throws Exception {
 		User user = this.userService.login(email, password);
 		if(user == null){
-			throw new Exception();
-		}else{
+			throw new Exception("Usuario não existe");
+		}else if(!user.getPassword().equals(password) || !user.getEmail().equals(email)){
+			throw new Exception("Usuario ou senha invalida");
+		} else{
 			String token = Jwts.builder().setSubject(user.getUsername())
 					.signWith(SignatureAlgorithm.HS512, "secretkey")
 					.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 1000)).compact();
