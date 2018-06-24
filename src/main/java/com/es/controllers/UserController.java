@@ -1,5 +1,6 @@
 package com.es.controllers;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.es.controllers.UserController.LoginResponse;
 import com.es.models.User;
 import com.es.responses.Response;
 import com.es.services.UserService;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -75,6 +79,35 @@ public class UserController {
 	public ResponseEntity<Response<Integer>> delete(@PathVariable(name = "id") User id) {
 		this.userService.delete(id);
 		return ResponseEntity.ok(new Response<Integer>(1));
+	}
+
+	@ApiOperation(value = "Verifica dados para fazer login do usuário")
+	@PostMapping(path = "{email}/{password}")
+	public ResponseEntity<LoginResponse> login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) throws Exception {
+		User user = this.userService.login(email, password);
+		if(user == null){
+			throw new Exception("Usuario não existe");
+		}else if(!user.getPassword().equals(password) || !user.getEmail().equals(email)){
+			throw new Exception("Usuario ou senha invalida");
+		} else{
+			String token = Jwts.builder().setSubject(user.getUsername())
+					.signWith(SignatureAlgorithm.HS512, "secretkey")
+					.setExpiration(new Date(System.currentTimeMillis() + 10 * 60 * 1000)).compact();
+
+			return ResponseEntity.ok(new LoginResponse(token, user));
+		}
+		
+	}
+	
+	public class LoginResponse {
+		public String token;
+		public User user;
+
+		public LoginResponse(String token,User user) {
+			this.token = token;
+			this.user = user;
+		}
+
 	}
 
 }

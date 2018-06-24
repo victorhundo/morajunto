@@ -52,11 +52,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User login(User user) {
-		
-		return null;
+	public User login(String email, String password) {
+		User user = userRepository.findByEmail(email);
+		if(user.getPassword().equals(password)){
+			return user;
+		}else{
+			return null;
+		}
 	}
-
-	
-
 }

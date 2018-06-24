@@ -2,6 +2,8 @@ package com.es.models;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,6 +17,7 @@ public class User implements Serializable {
 
 	@Id
 	private String Id;
+	
 	private String username;
 	private String password;
 	private String email;
