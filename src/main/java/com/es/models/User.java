@@ -16,7 +16,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String Id;
+	private String id;
+	
 	
 	private String username;
 	private String password;
@@ -27,11 +28,15 @@ public class User implements Serializable {
 	}
 	
 	public String getId() {
-		return Id;
+		return id;
 	}
+
+
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
+
+	
 	public String getUsername() {
 		return username;
 	}
@@ -56,7 +61,7 @@ public class User implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "User [Id=" + Id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
+		return "User [Id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
 	}
 
 }

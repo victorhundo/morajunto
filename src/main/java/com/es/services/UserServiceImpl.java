@@ -50,10 +50,15 @@ public class UserServiceImpl implements UserService{
 		userRepository.delete(user);
 		
 	}
+	
+	@Override
+	public User getByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
 	@Override
 	public User login(String email, String password) {
-		User user = userRepository.findByEmail(email);
+		User user = userRepository.findByUsername(email);
 		if(user.getPassword().equals(password)){
 			return user;
 		}else{

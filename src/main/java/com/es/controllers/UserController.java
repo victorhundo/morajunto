@@ -47,7 +47,7 @@ public class UserController {
 	@ApiOperation(value = "Método que retorna o usuario pelo id passado como parametro")
 	@GetMapping(path = "{username}")
 	public ResponseEntity<Response<User>> getByUsername(@PathVariable(name = "username") String username) {
-		return ResponseEntity.ok(new Response<User>(this.userService.getById(username)));
+		return ResponseEntity.ok(new Response<User>(this.userService.getByUsername(username)));
 	}
 
 	@ApiOperation(value = "Método que cria um novo usuario")
@@ -77,17 +77,18 @@ public class UserController {
 	@ApiOperation(value = "Exclui um usuario com ID passado como parametro")
 	@DeleteMapping(path = "{id}")
 	public ResponseEntity<Response<Integer>> delete(@PathVariable(name = "id") User id) {
+		System.out.println(id);
 		this.userService.delete(id);
 		return ResponseEntity.ok(new Response<Integer>(1));
 	}
 
 	@ApiOperation(value = "Verifica dados para fazer login do usuário")
-	@PostMapping(path = "{email}/{password}")
-	public ResponseEntity<LoginResponse> login(@PathVariable(name = "email") String email, @PathVariable(name = "password") String password) throws Exception {
-		User user = this.userService.login(email, password);
+	@PostMapping(path = "{username}/{password}")
+	public ResponseEntity<LoginResponse> login(@PathVariable(name = "username") String username, @PathVariable(name = "password") String password) throws Exception {
+		User user = this.userService.login(username, password);
 		if(user == null){
 			throw new Exception("Usuario não existe");
-		}else if(!user.getPassword().equals(password) || !user.getEmail().equals(email)){
+		}else if(!user.getPassword().equals(password) || !user.getUsername().equals(username)){
 			throw new Exception("Usuario ou senha invalida");
 		} else{
 			String token = Jwts.builder().setSubject(user.getUsername())

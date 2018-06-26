@@ -20,4 +20,6 @@ public interface UserService {
 	boolean update(User newUser);
 
 	void delete(User user);
+
+	User getByUsername(String username);
 }
