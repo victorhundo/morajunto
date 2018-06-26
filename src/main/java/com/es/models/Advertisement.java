@@ -23,8 +23,8 @@ public class Advertisement implements Serializable {
     private Float price;
     private String minTime;
     private String gender;
-    private Strin lat;
-    private Strin lon;
+    private String lat;
+    private String lon;
 	
 	public Advertisement() {
 		// TODO Auto-generated constructor stub
@@ -50,7 +50,7 @@ public class Advertisement implements Serializable {
 		return bathroom;
 	}
 	public void setBathroom(Boolean bathroom) {
-		this.bathroom = passbathroomword;
+		this.bathroom = bathroom;
 	}
 	public Float getPrice() {
 		return price;

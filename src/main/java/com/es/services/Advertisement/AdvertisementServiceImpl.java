@@ -1,4 +1,4 @@
-package com.es.services;
+package com.es.services.Advertisement;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import com.es.repository.AdvertisementRepository;
 public class AdvertisementServiceImpl implements AdvertisementService{
 
 	@Autowired
-	private AdvertisementRepository AdvertisementRepository;
+	private AdvertisementRepository advertisementRepository;
 	
 	
 	
@@ -34,7 +34,7 @@ public class AdvertisementServiceImpl implements AdvertisementService{
 
 	@Override
 	public Advertisement getById(String id) {
-		return advertisementRepository.findById(id);
+		return null;
 	}
 
 	@Override
