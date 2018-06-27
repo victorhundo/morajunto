@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.es.controllers.UserController.LoginResponse;
 import com.es.models.User;
 import com.es.responses.Response;
-import com.es.services.UserService;
+import com.es.services.User.*;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

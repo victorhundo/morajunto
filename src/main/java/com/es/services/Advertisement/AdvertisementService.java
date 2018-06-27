@@ -1,4 +1,4 @@
-package com.es.services;
+package com.es.services.Advertisement;
 
 import java.util.List;
 
