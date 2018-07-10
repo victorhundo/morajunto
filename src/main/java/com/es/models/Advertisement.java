@@ -17,9 +17,16 @@ public class Advertisement implements Serializable {
 	@Id
 	private String id;
 	
-	
+	private String advertiser;
+	private Integer CEP;
+	private Integer phone;
+	private Integer ray;
+	private String username;
+	private String email;
 	private String propertySize;
+	private Integer rooms;
 	private Boolean bathroom;
+	private Integer rating;
     private Float price;
     private String minTime;
     private String gender;
@@ -39,19 +46,84 @@ public class Advertisement implements Serializable {
 		this.id = id;
 	}
 
-	
+	public String getAdvertiser() {
+		return advertiser;
+	}
+
+	public void setAdvertiser(String advertiser) {
+		this.advertiser = advertiser;
+	}
+
+	public Integer getCEP() {
+		return CEP;
+	}
+
+	public void setCEP(Integer CEP) {
+		this.CEP = CEP;
+	}
+
+	public Integer getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
+
+	public Integer getRay() {
+		return ray;
+	}
+
+	public void setRay(Integer ray) {
+		this.ray = ray;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getPropertySize() {
 		return propertySize;
 	}
 	public void setPropertySize(String propertySize) {
 		this.propertySize = propertySize;
 	}
+
+	public Integer getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Integer rooms) {
+		this.rooms = rooms;
+	}
+
 	public Boolean getBathroom() {
 		return bathroom;
 	}
 	public void setBathroom(Boolean bathroom) {
 		this.bathroom = bathroom;
 	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
 	public Float getPrice() {
 		return price;
 	}
@@ -88,7 +160,7 @@ public class Advertisement implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Advertisement [Id=" + id + ", property size=" + propertySize + ", bathroom=" + bathroom + ", price=" + price + ", minimum time=" + minTime + ", gender=" + gender + ", lat=" + lat + ", lon=" + lon + "]";
+		return "Advertisement [Id=" + id + ", advertiser=" + advertiser + ", CEP=" + CEP + ", phone=" + phone + ", ray=" + ray + ", username=" + username + ", email=" + email + ", property size=" + propertySize + ", rooms=" + rooms + ", bathroom=" + bathroom + ", rating=" + rating + ", price=" + price + ", minimum time=" + minTime + ", gender=" + gender + ", lat=" + lat + ", lon=" + lon + "]";
 	}
 
 }

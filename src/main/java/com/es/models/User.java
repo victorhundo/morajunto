@@ -18,9 +18,12 @@ public class User implements Serializable {
 	@Id
 	private String id;
 	
-	
+	private String name;
+	private Integer CPF;
+	private Integer contact;
 	private String username;
 	private String password;
+	private Integer age;
 	private String email;
 	
 	public User() {
@@ -31,11 +34,33 @@ public class User implements Serializable {
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getCPF() {
+		return CPF;
+	}
+
+	public void setCPF(Integer CPF) {
+		this.CPF = CPF;
+	}
+
+	public Integer getContact() {
+		return contact;
+	}
+
+	public void setContact(Integer contact) {
+		this.contact = contact;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -49,6 +74,15 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -61,7 +95,7 @@ public class User implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "User [Id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
+		return "User [Id=" + id + ", name=" + name + ", CPF=" + CPF + ", contact=" + contact + ", username=" + username + ", password=" + password + ", age=" + age + ", email=" + email + "]";
 	}
 
 }

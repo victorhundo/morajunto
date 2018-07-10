@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.es.controllers.UserController.LoginResponse;
 import com.es.models.Advertisement;
 import com.es.responses.Response;
 import com.es.services.Advertisement.*;
@@ -79,5 +78,11 @@ public class AdvertisementController {
 	public ResponseEntity<Response<Integer>> delete(@PathVariable(name = "id") Advertisement id) {
 		this.advertisementService.delete(id);
 		return ResponseEntity.ok(new Response<Integer>(1));
+	}
+
+	@ApiOperation(value = "Método que retorna os anuncios pelo username passado como parametro")
+	@GetMapping(path = "{username}")
+	public ResponseEntity<Response<List<Advertisement>>> getByUsername(@PathVariable(name = "username") String username) {
+		return ResponseEntity.ok(new Response<List<Advertisement>>(this.advertisementService.getByUsername(username)));
 	}
 }

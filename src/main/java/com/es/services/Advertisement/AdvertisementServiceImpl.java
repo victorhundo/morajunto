@@ -24,12 +24,18 @@ public class AdvertisementServiceImpl implements AdvertisementService{
 	
 	@Override
 	public Advertisement create(Advertisement advertisement) {
+		System.out.println(advertisement);
 		return  advertisementRepository.save(advertisement);
 	}
 
 	@Override
 	public List<Advertisement> findAll() {
 		return advertisementRepository.findAll();
+	}
+
+	@Override
+	public List<Advertisement> getByUsername(String username) {
+		return advertisementRepository.findByUsername(username);
 	}
 
 	@Override

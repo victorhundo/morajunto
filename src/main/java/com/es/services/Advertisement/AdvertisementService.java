@@ -13,6 +13,8 @@ public interface AdvertisementService {
 
 	List<Advertisement> findAll();
 
+	List<Advertisement> getByUsername(String username);
+
 	Advertisement getById(String id);
 
 	boolean update(Advertisement newAdvertisement);
