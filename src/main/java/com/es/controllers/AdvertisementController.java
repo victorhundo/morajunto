@@ -1,8 +1,8 @@
 package com.es.controllers;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -21,10 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.es.models.Advertisement;
 import com.es.responses.Response;
-import com.es.services.Advertisement.*;
+import com.es.services.Advertisement.AdvertisementService;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -45,8 +43,8 @@ public class AdvertisementController {
 
 	@ApiOperation(value = "Método que retorna o anuncio pelo id passado como parametro")
 	@GetMapping(path = "{id}")
-	public ResponseEntity<Response<Advertisement>> getById(@PathVariable(name = "id") String advertisementID) {
-		return ResponseEntity.ok(new Response<Advertisement>(this.advertisementService.getById(advertisementID)));
+	public ResponseEntity<Response<Optional<Advertisement>>> getById(@PathVariable(name = "id") String advertisementID) {
+		return ResponseEntity.ok(new Response<Optional<Advertisement>>(this.advertisementService.getById(advertisementID)));
 	}
 
 	@ApiOperation(value = "Método que cria um novo anuncio")

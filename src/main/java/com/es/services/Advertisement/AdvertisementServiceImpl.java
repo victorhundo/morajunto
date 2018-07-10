@@ -1,6 +1,7 @@
 package com.es.services.Advertisement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class AdvertisementServiceImpl implements AdvertisementService{
 	}
 
 	@Override
-	public Advertisement getById(String id) {
-		return null;
+	public Optional<Advertisement> getById(String id) {
+		return advertisementRepository.findById(id);
 	}
 
 	@Override

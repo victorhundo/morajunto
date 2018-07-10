@@ -1,8 +1,7 @@
 package com.es.services.Advertisement;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import com.es.models.Advertisement;
 
@@ -15,7 +14,7 @@ public interface AdvertisementService {
 
 	List<Advertisement> getByUsername(String username);
 
-	Advertisement getById(String id);
+	Optional<Advertisement> getById(String id);
 
 	boolean update(Advertisement newAdvertisement);
 
