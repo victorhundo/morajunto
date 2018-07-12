@@ -52,13 +52,34 @@ public class UserController {
 
 	@ApiOperation(value = "Método que cria um novo usuario")
 	@PostMapping
-	public ResponseEntity<Response<User>> create(@Valid @RequestBody User user, BindingResult result) {
+	public ResponseEntity<Response<User>> create(@Valid @RequestBody User user, BindingResult result) throws Exception {
 		if (result.hasErrors()) {
 			List<String> errors = new ArrayList<String>();
 			result.getAllErrors().forEach(erro -> errors.add(erro.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(new Response<User>(errors));
 		}
-		return ResponseEntity.ok(new Response<User>(this.userService.create(user)));
+		
+		if(verifyUsername(userService.findAll(),user.getUsername())) {
+			return ResponseEntity.ok(new Response<User>(this.userService.create(user)));
+		}else {
+			throw new Exception("Usuario já cadastrado");
+		}
+		
+	}
+
+	private boolean verifyUsername(List<User> users, @Valid String user) {
+		boolean result = true;
+		for (User user1 : users) {
+			
+			if(user1.getUsername().equals(user)) {
+				System.out.println(user1.getUsername());
+				System.out.println(user);
+				result = false;
+				break;
+			}
+		}
+		return result;
+		
 	}
 
 	@ApiOperation(value = "Altera os dados do Usuário com o ID passado como parametro")
