@@ -9,22 +9,18 @@ import com.es.models.User;
 import com.es.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	
-	
+
 	public UserServiceImpl(UserRepository userRepository) {
 		userRepository = this.userRepository;
 	}
-	
-	
-	
+
 	@Override
 	public User create(User user) {
-		return  userRepository.save(user);
+		return userRepository.save(user);
 	}
 
 	@Override
@@ -48,9 +44,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void delete(User user) {
 		userRepository.delete(user);
-		
+
 	}
-	
+
 	@Override
 	public User getByUsername(String username) {
 		return userRepository.findByUsername(username);
@@ -59,10 +55,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User login(String email, String password) {
 		User user = userRepository.findByUsername(email);
-		if(user.getPassword().equals(password)){
+		if (user.getPassword().equals(password)) {
 			return user;
-		}else{
+		} else {
 			return null;
 		}
 	}
+
+	
 }
