@@ -19,8 +19,8 @@ public class User implements Serializable {
 	private String id;
 	
 	private String name;
-	private Integer CPF;
-	private Integer contact;
+	private String CPF;
+	private String contact;
 	private String username;
 	private String password;
 	private Integer age;
@@ -46,19 +46,19 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getCPF() {
+	public String getCPF() {
 		return CPF;
 	}
 
-	public void setCPF(Integer CPF) {
+	public void setCPF(String CPF) {
 		this.CPF = CPF;
 	}
 
-	public Integer getContact() {
+	public String getContact() {
 		return contact;
 	}
 
-	public void setContact(Integer contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 	
