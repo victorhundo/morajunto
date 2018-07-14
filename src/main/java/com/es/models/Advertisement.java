@@ -18,17 +18,20 @@ public class Advertisement implements Serializable {
 	private String id;
 	
 	private String advertiser;
-	private Integer CEP;
-	private Integer phone;
-	private Integer ray;
+	private String CEP;
+	private String street;
+	private String neighborhood;
+	private String state;
+	private String city;
+	private String phone;
+	private String ray;
 	private String username;
 	private String email;
 	private String propertySize;
 	private Integer rooms;
-	private Boolean bathroom;
-	private Integer rating;
-    private Float price;
-    private String minTime;
+	private String bathroom;
+	private String rating;
+    private String price;
     private String gender;
     private String lat;
     private String lon;
@@ -54,27 +57,27 @@ public class Advertisement implements Serializable {
 		this.advertiser = advertiser;
 	}
 
-	public Integer getCEP() {
+	public String getCEP() {
 		return CEP;
 	}
 
-	public void setCEP(Integer CEP) {
+	public void setCEP(String CEP) {
 		this.CEP = CEP;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public Integer getRay() {
+	public String getRay() {
 		return ray;
 	}
 
-	public void setRay(Integer ray) {
+	public void setRay(String ray) {
 		this.ray = ray;
 	}
 
@@ -109,33 +112,28 @@ public class Advertisement implements Serializable {
 		this.rooms = rooms;
 	}
 
-	public Boolean getBathroom() {
+	public String getBathroom() {
 		return bathroom;
 	}
-	public void setBathroom(Boolean bathroom) {
+	public void setBathroom(String bathroom) {
 		this.bathroom = bathroom;
 	}
 
-	public Integer getRating() {
+	public String getRating() {
 		return rating;
 	}
 
-	public void setRating(Integer rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 
-	public Float getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(Float price) {
+	public void setPrice(String price) {
 		this.price = price;
-    }
-    public String getMinTime() {
-		return minTime;
 	}
-	public void setMinTime(String minTime) {
-		this.minTime = minTime;
-    }
+	
     public String getGender() {
 		return gender;
 	}
