@@ -158,7 +158,7 @@ public class Advertisement implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Advertisement [Id=" + id + ", advertiser=" + advertiser + ", CEP=" + CEP + ", phone=" + phone + ", ray=" + ray + ", username=" + username + ", email=" + email + ", property size=" + propertySize + ", rooms=" + rooms + ", bathroom=" + bathroom + ", rating=" + rating + ", price=" + price + ", minimum time=" + minTime + ", gender=" + gender + ", lat=" + lat + ", lon=" + lon + "]";
+		return "Advertisement [Id=" + id + ", advertiser=" + advertiser + ", CEP=" + CEP + ", phone=" + phone + ", ray=" + ray + ", username=" + username + ", email=" + email + ", property size=" + propertySize + ", rooms=" + rooms + ", bathroom=" + bathroom + ", rating=" + rating + ", price=" + price + ", gender=" + gender + ", lat=" + lat + ", lon=" + lon + "]";
 	}
 
 }
