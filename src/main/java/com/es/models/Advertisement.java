@@ -16,7 +16,6 @@ public class Advertisement implements Serializable {
 
 	@Id
 	private String id;
-	
 	private String advertiser;
 	private String CEP;
 	private String street;
@@ -65,6 +64,38 @@ public class Advertisement implements Serializable {
 		this.CEP = CEP;
 	}
 
+	public String getStreet(){
+		return street;
+	}
+
+	public void setStreet(String street){
+		this.street = street;
+	}
+
+	public String getNeighborhood(){
+		return neighborhood;
+	}
+
+	public void setNeighborhood(String neighborhood){
+		this.neighborhood = neighborhood;
+	}
+
+	public String getState(){
+		return state;
+	}
+
+	public void setState(String state){
+		this.state = state;
+	}
+
+	public String getCity(){
+		return city;
+	}
+
+	public void setCity(String city){
+		this.city = city;
+	}
+	
 	public String getPhone() {
 		return phone;
 	}
@@ -100,6 +131,7 @@ public class Advertisement implements Serializable {
 	public String getPropertySize() {
 		return propertySize;
 	}
+	
 	public void setPropertySize(String propertySize) {
 		this.propertySize = propertySize;
 	}
@@ -158,7 +190,25 @@ public class Advertisement implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Advertisement [Id=" + id + ", advertiser=" + advertiser + ", CEP=" + CEP + ", phone=" + phone + ", ray=" + ray + ", username=" + username + ", email=" + email + ", property size=" + propertySize + ", rooms=" + rooms + ", bathroom=" + bathroom + ", rating=" + rating + ", price=" + price + ", gender=" + gender + ", lat=" + lat + ", lon=" + lon + "]";
+		return "Advertisement [Id=" + id +
+		 ", advertiser=" + advertiser +
+		 ", CEP=" + CEP +
+		 ", street=" + street +
+		 ", neighborhood=" + neighborhood +
+		 ", state=" + state +
+		 ", city=" + city +
+		 ", phone=" + phone +
+		 ", ray=" + ray + 
+		 ", username=" + username + 
+		 ", email=" + email + 
+		 ", property size=" + propertySize + 
+		 ", rooms=" + rooms + 
+		 ", bathroom=" + bathroom + 
+		 ", rating=" + rating + 
+		 ", price=" + price + 
+		 ", gender=" + gender + 
+		 ", lat=" + lat + 
+		 ", lon=" + lon + 
+		 "]";
 	}
-
 }
