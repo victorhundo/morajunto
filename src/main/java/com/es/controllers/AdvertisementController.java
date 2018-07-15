@@ -79,7 +79,7 @@ public class AdvertisementController {
 	}
 
 	@ApiOperation(value = "Método que retorna os anuncios pelo username passado como parametro")
-	@GetMapping(path = "{username}")
+	@GetMapping(path = "/getadvertisement/{username}")
 	public ResponseEntity<Response<List<Advertisement>>> getByUsername(@PathVariable(name = "username") String username) {
 		return ResponseEntity.ok(new Response<List<Advertisement>>(this.advertisementService.getByUsername(username)));
 	}
