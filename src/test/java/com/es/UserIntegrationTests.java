@@ -1,6 +1,12 @@
 package com.es;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -27,7 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProjetoEsApplicationTests {
+public class UserIntegrationTests {
 
 	private MockMvc mockMvc;
 	@Autowired
@@ -65,6 +71,30 @@ public class ProjetoEsApplicationTests {
         .contentType(MediaType.APPLICATION_JSON)
         .content(asJsonString(user)));
         
+	}
+	
+	@Test
+	public void test_delete_user_sucess() throws Exception{
+		doNothing().when(userService).delete(user);
+		this.mockMvc.perform(delete("/api/users/5b4a2fea8963c117dcd041e8","5b4a2fea8963c117dcd041e8")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void adv_test_get_by_id_success() throws Exception {
+	   // when(advService.getByUsername("teste2")).thenReturn(user);
+	    mockMvc.perform(get("/api/users/{id}", "5b4b421a8963c122b4e2a91b"))
+	            .andExpect(status().isOk())
+	            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+	    verify(userService, times(0)).getByUsername("teste2");
+	    verifyNoMoreInteractions(userService);
+	}
+	
+	@Test
+	public void test_get_by_adv_id_fail_404_not_found() throws Exception {
+	   when(userService.getById("teste1")).thenReturn(null);
+	    this.mockMvc.perform(get("api/users/{id}",1)).andExpect(status().isNotFound());
+	    verify(userService, times(0)).getById("teste1");
+	    verifyNoMoreInteractions(userService);
 	}
 	
 	public static String asJsonString(final Object obj) {
