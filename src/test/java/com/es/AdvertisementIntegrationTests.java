@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TesteAdversitsiment {
+public class AdvertisementIntegrationTests {
 
 	private MockMvc mockMvc;
 	@Autowired
@@ -97,7 +97,7 @@ public class TesteAdversitsiment {
 	    //when(advService.getById(adv.getId())).thenReturn(adv);
 	    doNothing().when(advService).delete(adv);
 	    mockMvc.perform(
-	            delete("api/advertisements/{id}", advController.getById("5b4b475c8963c12974844899")))
+	            delete("api/advertisements/{id}", 1))
 	            .andExpect(status().isNotFound());
 	    verify(advService, times(0)).getById(adv.getId());
 	    verify(advService, times(0)).delete(adv);
